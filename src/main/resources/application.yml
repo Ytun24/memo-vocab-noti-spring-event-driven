@@ -1,0 +1,21 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: memo-vocab-noti-spring-event-driven
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    function:
+      definition: emailMessage
+    stream:
+      bindings:
+        emailMessage-in-0:                    # input binding name
+          destination: email-communication    # queue name in RabbitMQ
+          group: ${spring.application.name}
+
+
