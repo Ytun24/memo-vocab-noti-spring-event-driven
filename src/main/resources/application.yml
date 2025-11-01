@@ -11,11 +11,14 @@ spring:
     password: guest
   cloud:
     function:
-      definition: emailMessage
+      definition: emailMessage;allNotificationMessage
     stream:
       bindings:
         emailMessage-in-0:                    # input binding name
           destination: email-communication    # queue name in RabbitMQ
+          group: ${spring.application.name}
+        allNotificationMessage-in-0:
+          destination: all-notification-communication
           group: ${spring.application.name}
 
 
